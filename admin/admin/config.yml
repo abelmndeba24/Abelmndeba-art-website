@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "paintings"
+    label: "Paintings"
+    folder: "paintings"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Medium", name: "medium", widget: "string" }
+      - { label: "Size", name: "size", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Status", name: "status", widget: "select", options: ["Available", "Sold"] }
