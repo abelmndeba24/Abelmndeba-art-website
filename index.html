@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Abel Mndeba</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 40px;
+  color: #222;
+  background: white;
+  line-height: 1.7;
+}
+
+/* NAV */
+nav {
+  text-align: center;
+  margin-bottom: 70px;
+}
+nav a {
+  margin: 0 22px;
+  text-decoration: none;
+  color: #666;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+nav a:hover { color: #000; }
+
+/* HEADINGS */
+h1 { font-size: 42px; font-weight: 500; }
+h2 { font-size: 20px; letter-spacing: 2px; margin-bottom: 30px; }
+section { margin-top: 90px; }
+
+/* ABOUT */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+  align-items: center;
+}
+.about img { width: 100%; border-radius: 14px; }
+.about p { font-size: 15px; }
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 34px;
+}
+.artwork {
+  border: 1px solid #eee;
+  padding: 16px;
+  border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+.artwork:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.artwork img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.artwork img:hover {
+  opacity: 0.9;
+}
+.artwork p {
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+/* SOLD FADE */
+.artwork.sold { opacity: 0.55; }
+
+/* STATUS */
+.status {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 5px 0;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.status.available { 
+  color: #2e7d32; 
+  background-color: rgba(46, 125, 50, 0.1);
+}
+.status.sold { 
+  color: #b71c1c; 
+  background-color: rgba(183, 28, 28, 0.1);
+}
+.status.request { 
+  color: #555; 
+  background-color: rgba(85, 85, 85, 0.1);
+  font-style: italic;
+}
+
+/* BUTTONS */
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease;
+}
+.whatsapp-btn:hover {
+  background-color: #128C7E;
+  color: white;
+}
+.whatsapp-btn.sold {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.whatsapp-btn.sold:hover {
+  background-color: #cccccc;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow-y: auto;
+}
+.modal:target { display: flex; }
+.modal-content {
+  background: white;
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 14px;
+  position: relative;
+}
+.modal img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.close {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #555;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.close:hover {
+  background-color: #f5f5f5;
+}
+
+/* MODAL ACTIONS */
+.modal-actions {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  body { margin: 24px; }
+  .about { grid-template-columns: 1fr; }
+  .modal { padding: 20px; }
+  .modal-content { padding: 20px; }
+  .modal-actions { flex-direction: column; }
+  nav a { margin: 0 10px; font-size: 12px; letter-spacing: 2px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#artwork">ARTWORK</a>
+  <a href="#about">ABOUT</a>
+  <a href="#contact">CONTACT</a>
+</nav>
+
+<h1>Abel Mndeba</h1>
+
+<section id="about">
+  <div class="about">
+    <img src="abel.jpg">
+    <div>
+      <p>Abel Mndeba is a drawing and painting artist based in Dar es Salaam, Tanzania, born in Mbeya.</p>
+      <p>His current work focuses on wildlife, especially lion life, reflecting leadership, unity, and social identity.</p>
+      <p>Through his art, Abel connects animal behavior with human society.</p>
+    </div>
+  </div>
+</section>
+
+<section id="artwork">
+<h2>Selected Works</h2>
+
+<div class="gallery">
+
+<div class="artwork sold">
+<a href="#unity"><img src="lion1.jpg"></a>
+<p><strong>Unity</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Unity'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+</div>
+
+<div class="artwork sold">
+<a href="#mimi"><img src="lion2.jpg"></a>
+<p><strong>Mimi na Wewe</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Mimi%20na%20Wewe'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+</div>
+
+<div class="artwork sold">
+<a href="#untitled"><img src="lion3.jpg"></a>
+<p><strong>Untitled</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Untitled'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+</div>
+
+<div class="artwork sold">
+<a href="#wisdom"><img src="lion4.jpg"></a>
+<p><strong>Wisdom</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Wisdom'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+</div>
+
+<div class="artwork">
+<a href="#leadership"><img src="lion5.jpg"></a>
+<p><strong>Leadership</strong><br><span class="status request">Available upon request</span><br>Acrylic on canvas, 2025<br>120 × 80 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20inquire%20about%20'Leadership'%20from%20your%20website" class="whatsapp-btn">Request on WhatsApp</a>
+</div>
+
+<div class="artwork">
+<a href="#sweetmother"><img src="lion6.jpg"></a>
+<p><strong>Sweet Mother</strong><br><span class="status available">Available</span><br>Acrylic on canvas, 2025<br>100 × 100 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20purchase%20'Sweet%20Mother'%20from%20your%20website" class="whatsapp-btn">Buy on WhatsApp</a>
+</div>
+
+<div class="artwork">
+<a href="#kasuku"><img src="lion7.jpg"></a>
+<p><strong>Kasuku</strong><br><span class="status available">Available</span><br>Acrylic on canvas, 2025<br>80 × 60 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20purchase%20'Kasuku'%20from%20your%20website" class="whatsapp-btn">Buy on WhatsApp</a>
+</div>
+
+<div class="artwork">
+<a href="#nothingtofear"><img src="lion8.jpg"></a>
+<p><strong>Nothing to Fear</strong><br><span class="status available">Available</span><br>Acrylic on canvas, 2025<br>120 × 80 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20purchase%20'Nothing%20to%20Fear'%20from%20your%20website" class="whatsapp-btn">Buy on WhatsApp</a>
+</div>
+
+<div class="artwork sold">
+<a href="#nyumbani"><img src="lion9.jpg"></a>
+<p><strong>Nyumbani</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 70 cm</p>
+<a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Nyumbani'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+</div>
+
+</div>
+</section>
+
+<!-- MODALS (BIG VIEW) -->
+
+<div id="unity" class="modal">
+  <div class="modal-content">
+    <img src="lion1.jpg">
+    <p><strong>Unity</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm<br><br>Reflection of unity, strength, and shared identity.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Unity'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+    </div>
+  </div>
+</div>
+
+<div id="mimi" class="modal">
+  <div class="modal-content">
+    <img src="lion2.jpg">
+    <p><strong>Mimi na Wewe</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm<br><br>Acceptance, love, and respect.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Mimi%20na%20Wewe'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+    </div>
+  </div>
+</div>
+
+<div id="untitled" class="modal">
+  <div class="modal-content">
+    <img src="lion3.jpg">
+    <p><strong>Untitled</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm<br><br>Unconditional love.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Untitled'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+    </div>
+  </div>
+</div>
+
+<div id="wisdom" class="modal">
+  <div class="modal-content">
+    <img src="lion4.jpg">
+    <p><strong>Wisdom</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 100 cm<br><br>Guidance and experience shared across generations.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Wisdom'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+    </div>
+  </div>
+</div>
+
+<div id="leadership" class="modal">
+  <div class="modal-content">
+    <img src="lion5.jpg">
+    <p><strong>Leadership</strong><br><span class="status request">Available upon request</span><br>Acrylic on canvas, 2025<br>120 × 80 cm<br><br>The quiet authority of leadership.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20inquire%20about%20'Leadership'%20from%20your%20website" class="whatsapp-btn">Request on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div id="sweetmother" class="modal">
+  <div class="modal-content">
+    <img src="lion6.jpg">
+    <p><strong>Sweet Mother</strong><br><span class="status available">Available</span><br>Acrylic on canvas, 2025<br>100 × 100 cm<br><br>Celebrating the love and sacrifice of mothers.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20purchase%20'Sweet%20Mother'%20from%20your%20website" class="whatsapp-btn">Buy on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div id="kasuku" class="modal">
+  <div class="modal-content">
+    <img src="lion7.jpg">
+    <p><strong>Kasuku</strong><br><span class="status available">Available</span><br>Acrylic on canvas, 2025<br>80 × 60 cm<br><br>Color, intelligence, and voice in nature.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20purchase%20'Kasuku'%20from%20your%20website" class="whatsapp-btn">Buy on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div id="nothingtofear" class="modal">
+  <div class="modal-content">
+    <img src="lion8.jpg">
+    <p><strong>Nothing to Fear</strong><br><span class="status available">Available</span><br>Acrylic on canvas, 2025<br>120 × 80 cm<br><br>Courage and calm in uncertainty.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20would%20like%20to%20purchase%20'Nothing%20to%20Fear'%20from%20your%20website" class="whatsapp-btn">Buy on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div id="nyumbani" class="modal">
+  <div class="modal-content">
+    <img src="lion9.jpg">
+    <p><strong>Nyumbani</strong><br><span class="status sold">Sold</span><br>Acrylic on canvas, 2025<br>100 × 70 cm<br><br>Home as safety and belonging.</p>
+    <div class="modal-actions">
+      <a href="#" class="close">Close View</a>
+      <a href="https://wa.me/255755270990?text=Hello%20Abel,%20I%20am%20interested%20in%20your%20artwork%20'Nyumbani'%20from%20your%20website" class="whatsapp-btn sold" onclick="return false;">Sold Out</a>
+    </div>
+  </div>
+</div>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>
+Email: <a href="mailto:abelmndeba24@gmail.com">abelmndeba24@gmail.com</a><br>
+Instagram: <a href="https://instagram.com/abelmndeba24">@abelmndeba24</a><br>
+WhatsApp: <a href="https://wa.me/255755270990">Chat on WhatsApp</a>
+</p>
+</section>
+
+<script>
+// Optional: Add tracking for WhatsApp clicks
+document.querySelectorAll('.whatsapp-btn:not(.sold)').forEach(button => {
+  button.addEventListener('click', function(e) {
+    // You can add analytics tracking here
+    console.log('WhatsApp purchase button clicked:', this.textContent);
+    // The link will open WhatsApp naturally
+  });
+});
+
+// Close modal when clicking outside
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      window.location.hash = '';
+    }
+  });
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    window.location.hash = '';
+  }
+});
+</script>
+
+</body>
+</html>
