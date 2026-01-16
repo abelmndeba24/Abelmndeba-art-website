@@ -49,6 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
   lbClose.addEventListener('click', closeLightbox);
   lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  
+  // Prevent body scroll when lightbox is open
+  const originalOverflow = document.body.style.overflow;
+  const showLightboxObserver = new MutationObserver(() => {
+    if (lb.classList.contains('open')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originalOverflow;
+    }
+  });
+  showLightboxObserver.observe(lb, { attributes: true, attributeFilter: ['class'] });
 
   // reveal on scroll
   const obs = new IntersectionObserver((entries)=>{
