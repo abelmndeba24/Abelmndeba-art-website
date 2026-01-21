@@ -1,6 +1,6 @@
 ---
 title: "Beauty of Kilimanjaro"
-image: "images/beauty-of-kilimanjaro.jpg"
+image: "lion10.jpg"
 medium: ""
 size: "110x110cm"
 year: 
