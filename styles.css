@@ -65,7 +65,8 @@ html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial,sans-serif;co
 .about-text h2{margin-top:0;color:#fff}
 .about-text p{color:var(--muted);line-height:1.65;font-size:16.5px}
 
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;direction:rtl}
+.gallery .piece{direction:ltr}
 .piece{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:14px;border-radius:12px;transition:transform .35s ease,box-shadow .35s ease}
 .piece:hover{transform:translateY(-10px);box-shadow:0 28px 60px rgba(2,6,23,0.65)}
 .piece img{width:100%;height:240px;object-fit:cover;border-radius:10px;display:block}
